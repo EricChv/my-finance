@@ -11,7 +11,7 @@ const Home = () => {
             <HeaderBox 
                 type="greeting"
                 title="Welcome back,"
-                user={loggedIn?.firstName + '!' || "Guest"}
+                user={loggedIn?.firstName + '.' || "Guest"}
                 subtext="Conveniently manage all your financial needs in one place."
             />
 
