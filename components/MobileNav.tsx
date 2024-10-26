@@ -2,6 +2,7 @@
 
 import {
     Sheet,
+    SheetClose,
     SheetContent,
     SheetDescription,
     SheetHeader,
@@ -38,38 +39,47 @@ const MobileNav = ({ user }: MobileNavProps) => {
                         alt="MyFinance logo"
                     />
                     <h1 className="text-26 font-ibm-plex-serif font-bold
-                    text-black-1">MyFinance</h1>
+                    text-black-2">MyFinance</h1>
                 </Link>
-
-                {sidebarLinks.map((items) => {
-                const isActive = pathname === items.route || pathname.startsWith(`${items.route}/`)
-            
-                return (
-                    <Link href={items.route} key={items.label}
-                        className={cn('sidebar-link', {'bg-bank-gradient': isActive})}
-                        >
-                            <div className="relative size-6">
+                <div className="mobilenav-sheet">
+                    <SheetClose asChild>
+                        <nav className="flex h-full flex-col gap-6 pt-16 text-white">
+                            {sidebarLinks.map((items) => {
+                    const isActive = pathname === items.route || pathname.startsWith(`${items.route}/`)
+                
+                    return (
+                        <SheetClose asChild key={items.route}>
+                            <Link href={items.route} key={items.label}
+                            className={cn('mobilenav-sheet_close w-full', {'bg-bank-gradient': isActive})}>
                                 <Image 
                                     src={items.imgURL}
                                     alt={items.label}
-                                    fill
+                                    width={20}
+                                    height={20}
                                     className={cn({
                                         'brightness-[3] invert-0': isActive
                                     })}
                                 />
-                            </div>
+                                {/* Text label for the sidebar items */}
+                                <p className={cn("text-16 font-semibold text-black-2",
+                                    {"text-white" :isActive})}> {/* Apply white text color if item is active  */}
+                                    {items.label} {/* Display the item's label text */}
+                                </p>
+                            </Link>
+                        </SheetClose>
+                            )
+                            })}
 
-                            {/* Text label for the sidebar items */}
-                            <p className={cn("sidebar-label", {"!text-white" :isActive})}> {/* Apply white text color if item is active  */}
-                                {items.label} {/* Display the item's label text */}
-                            </p>
-                    </Link>
-                    )
-                })}
+                            USER
+                        </nav>
+                    </SheetClose>
+
+                    FOOTER
+                </div>
             </SheetContent>
         </Sheet>
     </section>
-  );
+    );
 }
 
 export default MobileNav;
