@@ -7,7 +7,7 @@ const HeaderBox = ({ type = "title", title, subtext, user }: HeaderBoxProps) => 
             {title}
             {type === "greeting" && (
                 // render username ('&nbsp' adds empty space character)
-                <span className='text-bankGradient'>
+                <span className='text-[#31393C]'>
                     &nbsp;{user}
                 </span>
             )}
