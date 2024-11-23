@@ -24,6 +24,8 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
     "react-hook-form": "^7.53.1",
+    "react-i": "^0.2.1",
+    "react-input-mask": "^2.0.4",
     "react-slot-counter": "^3.0.1",
     "shadcn-ui": "^0.9.2",
     "tailwind-merge": "^2.5.4",
