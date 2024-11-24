@@ -1,6 +1,5 @@
 "use client"
 
-
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
@@ -22,10 +21,14 @@ import { Input } from "@/components/ui/input"
 import CustomInput from './CustomInput';
 import { authFormSchema } from '@/lib/utils'
 import { Loader2 } from 'lucide-react' 
+import SignUp from '@/app/(auth)/sign-up/page'
+import { useRouter } from 'next/navigation'
+import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions'
 
 
 
 const AuthForm = ({ type }: {type: string }) => {
+    const router = useRouter();
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(false)
 
@@ -39,10 +42,31 @@ const AuthForm = ({ type }: {type: string }) => {
         },
     })
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
+    const onSubmit = async (data: z.infer<typeof formSchema>) => {
         setIsLoading(true)
-        console.log(values)
-        setIsLoading(false)
+
+        try {
+            // Sign up with AppWrite and create a plain link token
+            if (type === "sign-up"){
+                const newUser = await signUp(data)
+                
+                setUser(newUser)
+            }
+
+            if (type === "sign-in"){
+                const response = await signIn({
+                    email: data.email,
+                    password: data.password,
+                })
+
+                if(response) router.push("/")
+
+            }
+        } catch (error) {
+            console.log(error)
+        } finally {
+            setIsLoading(false)
+            }
         }
 
 return (
@@ -60,7 +84,7 @@ return (
             </Link>
 
             <div className="flex flex-col gap-1 md:gap-3">
-                <h1 className="text-24 lg:text-36 font-semibold text-gray-900">
+                <h1 className="text-24 lg:text-30 font-semibold text-gray-900">
                     {user
                     ? "Link Account"
                     : type === "sign-in"
@@ -89,14 +113,14 @@ return (
                         <div className = "flex gap-4">
                             <CustomInput 
                             control={form.control} 
-                            name="FirstName" 
+                            name="firstName" 
                             label="First Name" 
                             placeholder="Name"
                             />
 
                             <CustomInput 
                             control={form.control} 
-                            name="LastName" 
+                            name="lastName" 
                             label="Last Name" 
                             placeholder="Last name"
                             />
@@ -104,7 +128,7 @@ return (
                                                     
                         <CustomInput 
                         control={form.control} 
-                        name="Address1" 
+                        name="address1" 
                         label="Street Address" 
                         placeholder="Street Address"
                         />
@@ -112,53 +136,54 @@ return (
                         <div className="flex gap-4">
                             <CustomInput 
                             control={form.control} 
-                            name="City" 
+                            name="city" 
                             label="City" 
                             placeholder="City"
                             />
 
                             <CustomInput 
                             control={form.control} 
-                            name="State" 
+                            name="state" 
                             label="State" 
                             placeholder="State"
                             />
 
                             <CustomInput 
                             control={form.control} 
-                            name="ZipCode" 
+                            name="zipCode" 
                             label="Zip Code" 
                             placeholder="Zip Code"
                             />
                         </div>
 
-                        <CustomInput 
-                        control={form.control} 
-                        name="DateOfBirth" 
-                        label="Date of Birth" 
-                        placeholder="MM-DD-YYYY"
-                        />                        
+                        <div className = "flex gap-4">
+                            <CustomInput 
+                            control={form.control} 
+                            name="dateOfBirth" 
+                            label="Date of Birth" 
+                            placeholder="MM-DD-YYYY"
+                            />                        
 
-                        <CustomInput 
-                        control={form.control} 
-                        name="SSN" 
-                        label="Social Security Number" 
-                        placeholder="Social Security Number"
-                        />
-
+                            <CustomInput 
+                            control={form.control} 
+                            name="ssn" 
+                            label="Social Security Number" 
+                            placeholder="SSN"
+                            />
+                        </div>
                     </>
                 )}
 
                 <CustomInput 
                 control={form.control} 
-                name="Email" 
+                name="email" 
                 label="Email" 
                 placeholder="Email"
                 />
 
                 <CustomInput 
                 control={form.control} 
-                name="Password" 
+                name="password" 
                 label="Password" 
                 placeholder="Password"
                 />
