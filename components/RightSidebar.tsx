@@ -6,11 +6,13 @@ import BankCard from './BankCard'
 const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
   return (
     <aside className="right-sidebar">
-        <section className="flex flex-col pb-8">
+        <section className="flex flex-col -pb-8">
             <div className="profile-banner" />
             <div className="profile">
                 <div className="profile-img">
-                    <span className="text-3xl font-light">{user.name[0]}</span>
+                    <span className="text-3xl font-light">
+                        {user.name}
+                    </span>
                 </div>
                 <div className="profile-details">
                     <h1 className="profile-name">
@@ -44,7 +46,7 @@ const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
                         <BankCard 
                             key={banks[0].$id}
                             account={banks[0]}
-                            userName={`${user.firstName} ${user.lastName}`}
+                            userName={user.name}
                             showBalance={false}
                         />
                     </div>
@@ -53,18 +55,16 @@ const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
                             <BankCard 
                                 key={banks[1].$id}
                                 account={banks[1]}
-                                userName={`${user.firstName} ${user.lastName}`}
+                                userName={user.name}
                                 showBalance={false}
                             />
                         </div>
                     )}
                 </div>
-            )
-            }
-
+            )}
         </section>
     </aside>
-  )
-}
+  );
+};
 
-export default RightSidebar
+export default RightSidebar;

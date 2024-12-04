@@ -259,8 +259,27 @@
 
   /* PlaidLink */
   .plaidlink-primary {
-    @apply text-16 rounded-lg border border-bankGradient bg-bank-gradient font-semibold text-white shadow-form;
-  }
+    @apply text-16 rounded-lg border bg-gradient-to-br from-[#31393C] to-[#1A2024] font-semibold text-white shadow-form;
+    background-image: linear-gradient(225deg, 
+                                      #5A6B72 0%,    /* Slightly brighter navy */
+                                      #283036 50%,   /* Brighter darker navy */
+                                      #465259 80%,   /* Slightly lighter dark gray */
+                                      #5A6B72 100%); /* Lighter gray-navy */
+    background-size: 200% 200%; /* Larger gradient size for smoother transition */
+    animation: breatheEffect 5s ease-in-out infinite; /* Slower, more subtle breathing effect */
+}
+
+@keyframes breatheEffect {
+    0% {
+        background-position: 0% 100%; /* Start from bottom-left corner */
+    }
+    50% {
+        background-position: 100% 0%; /* Mid-transition, top-right */
+    }
+    100% {
+        background-position: 0% 100%; /* Return to bottom-left */
+    }
+}
 
   .plaidlink-ghost {
     @apply flex cursor-pointer items-center justify-center gap-3 rounded-lg px-3 py-7 hover:bg-white lg:justify-start;
