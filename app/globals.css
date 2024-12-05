@@ -159,8 +159,19 @@
   }
 
   .profile-banner {
-    @apply h-[120px] w-full bg-cover bg-no-repeat;
-    background-image: linear-gradient(to right, #FFFFFF, #EDEEEB);
+    @apply h-[120px] w-full bg-gradient-custom bg-cover bg-no-repeat;
+  }
+
+  .bg-gradient-custom {
+    background: hsla(220, 43%, 11%, 1);
+
+    background: linear-gradient(90deg, hsla(220, 43%, 11%, 1) 12%, hsla(191, 28%, 23%, 1) 70%, hsla(207, 41%, 27%, 1) 100%);
+    
+    background: -moz-linear-gradient(90deg, hsla(220, 43%, 11%, 1) 12%, hsla(191, 28%, 23%, 1) 70%, hsla(207, 41%, 27%, 1) 100%);
+    
+    background: -webkit-linear-gradient(90deg, hsla(220, 43%, 11%, 1) 12%, hsla(191, 28%, 23%, 1) 70%, hsla(207, 41%, 27%, 1) 100%);
+    
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#101828", endColorstr="#2A454B", GradientType=1 );
   }
 
   .profile {

@@ -209,10 +209,6 @@ declare interface TotalBalanceBoxProps {
   totalCurrentBalance: number;
 }
 
-declare interface FooterProps {
-  user: User;
-}
-
 declare interface RightSidebarProps {
   user: User;
   transactions: Transaction[];
@@ -326,4 +322,9 @@ declare interface getBankProps {
 
 declare interface getBankByAccountIdProps {
   accountId: string;
+}
+
+declare interface FooterProps {
+  user: User;
+  type?:'mobile' | 'desktop';
 }

@@ -4,19 +4,8 @@ import TotalBalanceBox from "@/components/TotalBalanceBox";
 import RightSidebar from "@/components/RightSidebar";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 
-const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
-  const currentPage = Number(page as string) || 1;
+const Home = async () => {
   const loggedIn = await getLoggedInUser();
-  const accounts = await getAccounts({ 
-    userId: loggedIn.$id 
-  })
-
-  if(!accounts) return;
-  
-  const accountsData = accounts?.data;
-  const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
-
-  const account = await getAccount({ appwriteItemId })
 
   return (
     <section className="home">
@@ -30,18 +19,14 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
             />
 
             <TotalBalanceBox
-                accounts={accountsData}
-                totalBanks={accounts?.totalBanks}
-                totalCurrentBalance={accounts?.totalCurrentBalance} // temp balance placeholder
+                accounts={[]}
+                totalBanks={1}
+                totalCurrentBalance={23400.99} // temp balance placeholder
             />
         </header>
+        
+        Recent transactions
 
-        <RecentTransactions 
-          accounts={accountsData}
-          transactions={account?.transactions}
-          appwriteItemId={appwriteItemId}
-          page={currentPage}
-        />      
       </div>
 
       <RightSidebar 
@@ -50,7 +35,7 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
         banks={[{ currentBalance: 883.67}, {currentBalance: 254.20}]}
       />
     </section>
-  )
-}
+  );
+};
 
 export default Home

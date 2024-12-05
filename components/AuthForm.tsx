@@ -96,14 +96,14 @@ return (
             <div className="flex flex-col gap-1 md:gap-3">
                 <h1 className="text-24 lg:text-30 font-semibold text-gray-900">
                     {user
-                    ? "Link Account"
+                    ? "Get Started"
                     : type === "sign-in"
                         ? "Sign In"
                         : "Sign Up"
                     }
                     <p className="text-16 font-normal text-gray-600">
                         {user
-                            ? "Connect your account to begin"
+                            ? "By linking your bank account securely."
                             : "Please provide your login details"
                         }
                     </p>

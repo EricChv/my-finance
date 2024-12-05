@@ -4,6 +4,7 @@ import { getLoggedInUser } from "@/lib/actions/user.actions";
 import { redirect } from "next/navigation";
 import Image from "next/image";
 import { useRouter } from "next/router";
+
 export default async function RootLayout({
   children,
 }: Readonly<{
