@@ -11,4 +11,4 @@ baseOptions: {
 }
 })
 
-export const plaidClient = new PlaidApi(configuration);
+export const plaidClient = new PlaidApi(configuration); 

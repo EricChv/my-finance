@@ -8,8 +8,8 @@ import { z } from "zod"; /*For form validation we used zod for more info visit h
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import { getLoggedInUser, signIn } from "@/lib/actions/user.action";
-import { signUp } from "@/lib/actions/user.action";
+import { getLoggedInUser, signIn } from "@/lib/actions/user.actions";
+import { signUp } from "@/lib/actions/user.actions";
 import {
   Form,
   FormControl,

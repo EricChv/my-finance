@@ -1,10 +1,22 @@
-import HeaderBox from '@/components/HeaderBox'
-import RightSidebar from '@/components/RightSidebar';
-import TotalBalanceBox from '@/components/TotalBalanceBox';
-import { getLoggedInUser } from '@/lib/actions/user.action';
+import React from "react";
+import HeaderBox from "@/components/HeaderBox";
+import TotalBalanceBox from "@/components/TotalBalanceBox";
+import RightSidebar from "@/components/RightSidebar";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
 
-const Home = async () => {
-    const loggedIn = await getLoggedInUser();
+const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
+  const currentPage = Number(page as string) || 1;
+  const loggedIn = await getLoggedInUser();
+  const accounts = await getAccounts({ 
+    userId: loggedIn.$id 
+  })
+
+  if(!accounts) return;
+  
+  const accountsData = accounts?.data;
+  const appwriteItemId = (id as string) || accountsData[0]?.appwriteItemId;
+
+  const account = await getAccount({ appwriteItemId })
 
   return (
     <section className="home">
@@ -13,18 +25,23 @@ const Home = async () => {
             <HeaderBox 
                 type="greeting"
                 title="Welcome back,"
-                user={loggedIn?.name + '.' || "Guest"}
+                user={loggedIn?.firstName + '.' || "Guest"}
                 subtext="Conveniently manage all your financial needs in one place."
             />
 
             <TotalBalanceBox
-                accounts={[]}
-                totalBanks={1}
-                totalCurrentBalance={4500} // temp balance placeholder
+                accounts={accountsData}
+                totalBanks={accounts?.totalBanks}
+                totalCurrentBalance={accounts?.totalCurrentBalance} // temp balance placeholder
             />
         </header>
 
-        RECENT TRANSACTIONS
+        <RecentTransactions 
+          accounts={accountsData}
+          transactions={account?.transactions}
+          appwriteItemId={appwriteItemId}
+          page={currentPage}
+        />      
       </div>
 
       <RightSidebar 
@@ -32,7 +49,6 @@ const Home = async () => {
         transactions={[]}
         banks={[{ currentBalance: 883.67}, {currentBalance: 254.20}]}
       />
-
     </section>
   )
 }
