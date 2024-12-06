@@ -43,8 +43,8 @@ const MobileNav = ({ user }: MobileNavProps) => {
               height={34}
               alt="Horizon logo"
             />
-            <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">
-              JPT
+            <h1 className="text-26 font-roboto font-bold text-[#52514D]">
+              MyFinance
             </h1>
           </Link>
           <div className="mobilenav-sheet">
@@ -57,30 +57,31 @@ const MobileNav = ({ user }: MobileNavProps) => {
                   return (
                     <SheetClose asChild key={item.route}>
                       <Link
-                        href={item.route}
-                        key={item.label}
-                        className={cn("mobilenav-sheet_close w-full", {
-                          "bg-bank-gradient": isActive,
-                        })}
-                      >
-                        <Image
-                          src={item.imgURL}
-                          alt={item.label}
-                          width={20}
-                          height={20}
-                          className={cn({
-                            "brightness-[3]": isActive,
-                            "invert-0": !isActive,
-                          })}
-                        />
-                        <p
-                          className={cn("tex-16 font-semibold text-black-2", {
-                            "!text-white": isActive,
-                          })}
-                        >
-                          {item.label}
-                        </p>
-                      </Link>
+  href={item.route}
+  key={item.label}
+  className={cn("mobilenav-sheet_close w-full", {
+    "bg-[#52514D]": isActive, // Color when active
+  })}
+>
+  <Image
+    src={item.imgURL}
+    alt={item.label}
+    width={20}
+    height={20}
+    className={cn({
+      "brightness-[3]": isActive, // Brighter image when active
+      "invert-0": !isActive, // Normal image when inactive
+    })}
+  />
+  <p
+    className={cn("text-16 font-semibold text-black-2", {
+      "!text-white": isActive, // White text when active
+      "text-[#4A4A4A]": !isActive, // Darker gray text when inactive
+    })}
+  >
+    {item.label}
+  </p>
+</Link>
                     </SheetClose>
                   );
                 })}

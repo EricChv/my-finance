@@ -161,19 +161,23 @@
   }
 
   .profile-banner {
-    @apply h-[120px] w-full bg-gradient-custom bg-cover bg-no-repeat;
+    @apply h-[120px] w-full bg-cover bg-no-repeat relative;
+    position: relative;
+    background-color: #52514D; /* Changed to #847B77 */
   }
-
-  .bg-gradient-custom {
-    background: hsla(0, 0%, 0%, 1);
-
-    background: linear-gradient(135deg, hsla(0, 0%, 0%, 1) 0%, hsla(0, 0%, 20%, 1) 67%, hsla(0, 0%, 28%, 1) 100%);
-    
-    background: -moz-linear-gradient(135deg, hsla(0, 0%, 0%, 1) 0%, hsla(0, 0%, 20%, 1) 67%, hsla(0, 0%, 28%, 1) 100%);
-    
-    background: -webkit-linear-gradient(135deg, hsla(0, 0%, 0%, 1) 0%, hsla(0, 0%, 20%, 1) 67%, hsla(0, 0%, 28%, 1) 100%);
-    
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#000000", endColorstr="#343434", GradientType=1 );  }
+  
+  /* Adding modern dotted pattern */
+  .profile-banner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at top left, rgba(255, 255, 255, 0.1), transparent),
+                      radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.05), transparent);
+    pointer-events: none;
+  }
 
   .profile {
     @apply relative flex px-6 max-xl:justify-center;
@@ -181,8 +185,8 @@
 
   .profile-img {
     @apply flex-center absolute -top-8 size-24 rounded-full bg-gray-100 border-8 border-white p-2 shadow-profile;
-    background-color: #EDEEEB; /* Set background to #EDEEEB */
-    color: black; /* Set font color to black */
+    background-color: #EEEDE8; /* Set background to #EDEEEB */
+    color: #61605C; /* Set font color to black */
   }
 
   .profile-details {
@@ -403,7 +407,7 @@
   }
 
   .sidebar-logo {
-    @apply 2xl:text-26 font-roboto text-[26px] font-bold text-black-1 max-xl:hidden;
+    @apply 2xl:text-26 font-roboto text-[26px] font-bold text-[#31393C] max-xl:hidden;
   }
 
   .sidebar-link {

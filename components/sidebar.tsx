@@ -31,9 +31,14 @@ const Sidebar = ({ user }: SidebarProps) => {
                     const isActive = pathname === items.route || pathname.startsWith(`${items.route}/`)
                     
                     return (
-                        <Link href={items.route} key={items.label}
-                            className={cn('sidebar-link', {'bg-[#282828]': isActive})}
-                            >
+                        <Link
+                        href={items.route}
+                        key={items.label}
+                        className={cn('sidebar-link', { 'bg-[#837A79]': isActive })}
+                        style={{
+                            background: isActive ? '#52514D' : 'transparent', // Solid color when active, transparent otherwise
+                        }}
+>
                                 <div className="relative size-6">
                                     <Image 
                                         src={items.imgURL}
