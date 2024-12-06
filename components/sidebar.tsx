@@ -32,7 +32,7 @@ const Sidebar = ({ user }: SidebarProps) => {
                     
                     return (
                         <Link href={items.route} key={items.label}
-                            className={cn('sidebar-link', {'bg-[#31393C]': isActive})}
+                            className={cn('sidebar-link', {'bg-[#282828]': isActive})}
                             >
                                 <div className="relative size-6">
                                     <Image 

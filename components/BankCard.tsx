@@ -1,66 +1,69 @@
-import { formatAmount } from '@/lib/utils'
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { formatAmount } from "@/lib/utils";
 
-const BankCard = ({ account, userName, showBalance = true }: CreditCardProps) => {
+const BankCard = ({
+  account,
+  userName,
+  showBalance = true,
+}: CreditCardProps) => {
   return (
-    <div className="flex flex-col">
-        <Link href="/" className="bank-card">
-          <div className="bank-card_content">
-            <div>
-              <h1 className="text-16 font-semibold text-white">
-                {account.name || userName}
-              </h1>
-              <p className="font-ibm-plex-serif font-black text-white">
+    <div className="flex flex-col items-center">
+      {/* Main Card */}
+      <Link
+        href="/"
+        className="rounded-lg w-[300px] h-[180px] p-6 shadow-2xl hover:scale-105 transform transition duration-300 relative border border-gray-600"
+        style={{
+          background: 'linear-gradient(135deg, #1f1f1f, #2e2e2e, #4d4d4d)',
+        }}
+      >
+        {/* Top Section */}
+        <div className="flex justify-between">
+          {/* Balance (Move it left slightly) */}
+          <div>
+            <p className="text-sm font-medium text-white">Current Balance</p>
+              <p className="font-bold text-white">
                 {formatAmount(account.currentBalance)}
               </p>
-            </div>
-            <article className="flex flex-col gap-2">
-              <div className="flex justify-between">
-                <h1 className="text-10 font-semibold text-white">
-                <p className="text-10 font-semibold tracking-[1.1px] text-white">
-                  ●●●● ●●●● ●●●●  <span className="text-12">5656</span>
-                </p>
-                </h1>
-                
-              </div>
-              <h2 className="text-10 font-semibold text-white">
-                ●● / ●●
-                </h2>
-            </article>
           </div>
-
-          <div className="bank-card-icon">
-            <Image 
+          
+          {/* PayPass Icon */}
+          <div>
+            <Image
               src="/icons/Paypass.svg"
               width={20}
               height={24}
-              alt="pay"
-              className="mt-3 ml-4"
-            />
-            <Image 
-              src="/icons/visa.svg"
-              width={45}
-              height={32}
-              alt="visa"
-              className="mt-28 ml-1 mr-5"
-
+              alt="PayPass"
             />
           </div>
+        </div>
 
-          <Image 
-            src="/icons/card-texture.svg"
-            width={316}
-            height={190}
-            alt="texture"
-            className="absolute top-0 left-0"
+        {/* Bottom Section */}
+        <div className="absolute bottom-4 left-6">
+          {/* User Name and Expiration Date */}
+          <div className="flex items-center">
+            <p className="text-sm font-medium text-white">{userName}</p>
+            <p className="text-sm font-medium text-white ml-auto">12 / 27</p>
+          </div>
+          {/* Card Number */}
+          <p className="text-[14px] font-mono tracking-[2px] text-white mt-2">
+            5196 7728 2871 1234
+          </p>
+        </div>
+
+        {/* Card Logos */}
+        <div className="absolute bottom-4 right-3 flex gap-4">
+          <Image
+            src="/icons/visa.svg"
+            width={40}
+            height={30}
+            alt="Visa"
           />
-        </Link>
-
-        {/* COPY FUNCTION */}
+        </div>
+      </Link>
     </div>
-  )
-}
+  );
+};
 
-export default BankCard
+export default BankCard;

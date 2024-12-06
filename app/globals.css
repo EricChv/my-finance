@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* myFinance */
+
 * {
   margin: 0;
   padding: 0;
@@ -163,16 +165,15 @@
   }
 
   .bg-gradient-custom {
-    background: hsla(220, 43%, 11%, 1);
+    background: hsla(0, 0%, 0%, 1);
 
-    background: linear-gradient(90deg, hsla(220, 43%, 11%, 1) 12%, hsla(191, 28%, 23%, 1) 70%, hsla(207, 41%, 27%, 1) 100%);
+    background: linear-gradient(135deg, hsla(0, 0%, 0%, 1) 0%, hsla(0, 0%, 20%, 1) 67%, hsla(0, 0%, 28%, 1) 100%);
     
-    background: -moz-linear-gradient(90deg, hsla(220, 43%, 11%, 1) 12%, hsla(191, 28%, 23%, 1) 70%, hsla(207, 41%, 27%, 1) 100%);
+    background: -moz-linear-gradient(135deg, hsla(0, 0%, 0%, 1) 0%, hsla(0, 0%, 20%, 1) 67%, hsla(0, 0%, 28%, 1) 100%);
     
-    background: -webkit-linear-gradient(90deg, hsla(220, 43%, 11%, 1) 12%, hsla(191, 28%, 23%, 1) 70%, hsla(207, 41%, 27%, 1) 100%);
+    background: -webkit-linear-gradient(135deg, hsla(0, 0%, 0%, 1) 0%, hsla(0, 0%, 20%, 1) 67%, hsla(0, 0%, 28%, 1) 100%);
     
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#101828", endColorstr="#2A454B", GradientType=1 );
-  }
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#000000", endColorstr="#343434", GradientType=1 );  }
 
   .profile {
     @apply relative flex px-6 max-xl:justify-center;
@@ -180,6 +181,8 @@
 
   .profile-img {
     @apply flex-center absolute -top-8 size-24 rounded-full bg-gray-100 border-8 border-white p-2 shadow-profile;
+    background-color: #EDEEEB; /* Set background to #EDEEEB */
+    color: black; /* Set font color to black */
   }
 
   .profile-details {
