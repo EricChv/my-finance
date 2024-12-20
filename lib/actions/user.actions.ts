@@ -138,7 +138,7 @@ export const createLinkToken = async (user: User) => {
         client_user_id: user.$id
       },
       client_name: `${user.firstName} ${user.lastName}`,
-      products: ['auth'] as Products[],
+      products: ['auth', 'transactions'] as Products[],
       language: 'en',
       country_codes: ['US'] as CountryCode[],
     }
@@ -213,7 +213,7 @@ export const exchangePublicToken = async ({
     const processorToken = processorTokenResponse.data.processor_token;
 
      // Create a funding source URL for the account using the Dwolla customer ID, processor token, and bank name
-     const fundingSourceUrl = await addFundingSource({
+      const fundingSourceUrl = await addFundingSource({
       dwollaCustomerId: user.dwollaCustomerId,
       processorToken,
       bankName: accountData.name,
@@ -264,11 +264,7 @@ export const getBank = async ({ documentId }: getBankProps) => {
   try {
     const { database } = await createAdminClient();
 
-    const bank = await database.listDocuments(
-      DATABASE_ID!,
-      BANK_COLLECTION_ID!,
-      [Query.equal('$id', [documentId])]
-    )
+    const bank = await database.getDocument(DATABASE_ID!, BANK_COLLECTION_ID!, documentId)
 
     return parseStringify(bank.documents[0]);
   } catch (error) {

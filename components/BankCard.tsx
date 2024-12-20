@@ -12,18 +12,15 @@ const BankCard = ({
     <div className="flex flex-col items-center">
       {/* Main Card */}
       <Link
-  href="/"
-  className="rounded-lg w-[300px] h-[180px] p-6 shadow-2xl hover:scale-105 transform transition duration-300 relative group"
-  style={{
-    background: 'linear-gradient(135deg, #52514D, #837A79)', // High contrast gradient for more depth
-    boxShadow: '0 6px 10px rgba(0, 0, 0, 0.8)', // Stronger shadow for greater depth
-    borderRadius: '15px', // Rounded corners for a modern feel
-    border: '2px solid #52514D', // Darker border to match the gradient and add sharpness
-    position: 'relative', // Proper element positioning
-    transition: 'all 0.3s ease-in-out', // Smooth transition for hover effects
-}}
->
-      
+        href={`/transaction-history/?id=${account.appwriteItemId}`}
+        className="rounded-lg w-[300px] h-[180px] p-6 shadow-2xl hover:scale-105 transform transition duration-300 relative group"
+        style={{
+          background: "linear-gradient(135deg, #435154, #54666a)",
+          boxShadow: "0 6px 10px rgba(0, 0, 0, 0.8)",
+          borderRadius: "15px",
+          border: "2px solid #52514D",
+        }}
+      >
         {/* Main Card Content */}
         <div className="flex justify-between">
           <div>
@@ -45,22 +42,24 @@ const BankCard = ({
         <div className="absolute bottom-4 left-6">
           <div className="flex items-center">
             <p className="text-sm font-medium text-white">{userName}</p>
-            <p className="text-sm font-medium text-white ml-auto">12 / 27</p>
+            <p className="text-sm font-medium text-white ml-auto">●● / ●●</p>
           </div>
           <p className="text-[14px] font-mono tracking-[2px] text-white mt-2">
-            5196 7728 2871 1234
+            ●●●● ●●●● ●●●● <span className="font-bold">{account?.mask}</span>
           </p>
         </div>
 
         <div className="absolute bottom-4 right-3 flex gap-4">
-          <Image
-            src="/icons/visa.svg"
-            width={40}
-            height={30}
-            alt="Visa"
-          />
+          <Image src="/icons/mastercard.svg" width={40} height={30} alt="Mastercard" />
         </div>
       </Link>
+
+      {showBalance && (
+        <div className="mt-4 text-center">
+          <p className="text-sm font-medium text-gray-700">Shareable ID</p>
+          <p className="text-lg font-semibold">{account?.shareableId}</p>
+        </div>
+      )}
     </div>
   );
 };
