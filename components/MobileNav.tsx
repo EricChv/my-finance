@@ -43,7 +43,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
               height={34}
               alt="Horizon logo"
             />
-            <h1 className="text-26 font-roboto font-bold text-[#52514D]">
+            <h1 className="text-26 font-roboto font-bold text-[#546E7A]">
               MyFinance
             </h1>
           </Link>

@@ -163,20 +163,11 @@
   .profile-banner {
     @apply h-[120px] w-full bg-cover bg-no-repeat relative;
     position: relative;
-    background-color: #52514D; /* Changed to #847B77 */
-  }
-  
-  /* Adding modern dotted pattern */
-  .profile-banner::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(circle at top left, rgba(255, 255, 255, 0.1), transparent),
-                      radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.05), transparent);
-    pointer-events: none;
+    background: hsla(223, 33%, 96%, 1);
+    background: linear-gradient(45deg, hsla(223, 33%, 96%, 1) 5%, hsla(199, 16%, 54%, 1) 48%, hsla(203, 17%, 18%, 1) 100%);
+    background: -moz-linear-gradient(45deg, hsla(223, 33%, 96%, 1) 5%, hsla(199, 16%, 54%, 1) 48%, hsla(203, 17%, 18%, 1) 100%);
+    background: -webkit-linear-gradient(45deg, hsla(223, 33%, 96%, 1) 5%, hsla(199, 16%, 54%, 1) 48%, hsla(203, 17%, 18%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#F1F3F8", endColorstr="#77909C", GradientType=1 );
   }
 
   .profile {
@@ -185,9 +176,9 @@
 
   .profile-img {
     @apply flex-center absolute -top-8 size-24 rounded-full bg-gray-100 border-8 border-white p-2 shadow-profile;
-    background-color: #EEEDE8; /* Set background to #EDEEEB */
-    color: #61605C; /* Set font color to black */
-  }
+    background-color: #f4f5f8; 
+    color: #61605C;
+  } 
 
   .profile-details {
     @apply flex flex-col pt-24;
@@ -378,8 +369,12 @@
   }
 
   .footer_name {
-    @apply flex size-10 items-center justify-center rounded-full bg-gray-200 max-xl:hidden;
-  }
+    @apply flex size-10 items-center justify-center rounded-full bg-[#f4f5f8] max-xl:hidden;
+    background-color: #f4f5f8; 
+    color: #61605C;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: 300;
+}
 
   .footer_email {
     @apply flex flex-1 flex-col justify-center max-xl:hidden;
