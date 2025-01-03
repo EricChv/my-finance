@@ -25,9 +25,9 @@ const Home = async ({ searchParams: { id, page }}: SearchParamProps) => {
         <header className="home-header">
             <HeaderBox 
                 type="greeting"
-                title="Welcome back,"
+                title="Banking Dashboard"
+                subtext="Welcome back,"
                 user={loggedIn?.firstName || "Guest"}
-                subtext="This is your Financial Overview"
             />
 
             <TotalBalanceBox

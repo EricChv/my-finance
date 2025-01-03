@@ -5,8 +5,6 @@ declare type SearchParamProps = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-// ========================================
-
 declare type SignUpParams = {
   firstName: string;
   lastName: string;
@@ -67,7 +65,6 @@ declare type Transaction = {
   id: string;
   $id: string;
   name: string;
-  paymentChannel: string;
   type: string;
   accountId: string;
   amount: number;
@@ -179,15 +176,6 @@ declare interface PlaidLinkProps {
   dwollaCustomerId?: string;
 }
 
-// declare type User = sdk.Models.Document & {
-//   accountId: string;
-//   email: string;
-//   name: string;
-//   items: string[];
-//   accessToken: string;
-//   image: string;
-// };
-
 declare interface AuthFormProps {
   type: "sign-in" | "sign-up";
 }
@@ -269,10 +257,11 @@ declare interface getTransactionsProps {
 }
 
 declare interface CreateFundingSourceOptions {
-  customerId: string; // Dwolla Customer ID
-  fundingSourceName: string; // Dwolla Funding Source Name
-  plaidToken: string; // Plaid Account Processor Token
-  _links: object; // Dwolla On Demand Authorization Link
+  customerId: string;
+  fundingSourceName: string;
+  plaidToken: string;
+  _links: object;
+  _links: object; 
 }
 
 declare interface CreateTransactionProps {
@@ -326,5 +315,7 @@ declare interface getBankByAccountIdProps {
 
 declare interface FooterProps {
   user: User;
+  type?: "mobile" | "desktop";
   type?:'mobile' | 'desktop';
 }
+

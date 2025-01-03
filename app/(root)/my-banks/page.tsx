@@ -1,11 +1,36 @@
-import React from 'react'
+import BankCard from '@/components/BankCard';
+import HeaderBox from '@/components/HeaderBox';
+import { getAccounts } from '@/lib/actions/bank.actions';
+import { getLoggedInUser } from '@/lib/actions/user.actions';
+import React from 'react';
 
-const MyBanks = () => {
+const MyBanks = async () => {
+  const loggedIn = await getLoggedInUser();
+  const accounts = await getAccounts({ userId: loggedIn.$id });
+
   return (
-    <div>
-      MyBanks
-    </div>
-  )
-}
+    <section className="flex">
+      <div className="my-banks">
+        <HeaderBox
+          title="Bank Accounts"
+          subtext="Review your accounts"
+        />
+        <div className="space-y-4">
+          <h2 className="header-2">Your Cards</h2>
+          <div className="flex flex-wrap gap-6">
+            {accounts && accounts.data.map((a: Account, index: number) => (
+              <BankCard
+                key={accounts.id} // Use unique ID for the key prop
+                account={a}
+                userName={`${loggedIn.firstName} ${loggedIn.lastName}`}
+                cardStyle={index % 2 === 0 ? 'style1' : 'style2'} // Apply style1 for even, style2 for odd index
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
-export default MyBanks
+export default MyBanks;

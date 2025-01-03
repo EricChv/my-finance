@@ -117,10 +117,10 @@ export const transactionCategoryStyles = {
     chipBackgroundColor: "bg-inherit",
   },
   Processing: {
-    borderColor: "border-yellow-500",
+    borderColor: "border-gray-500",
     backgroundColor: "bg-gray-500",
-    textColor: "text-yellow-700",
-    chipBackgroundColor: "bg-[#F2F4F7]",
+    textColor: "text-gray-700",
+    chipBackgroundColor: "bg-inherit",
   },
   Success: {
     borderColor: "border-[#12B76A]",
@@ -129,9 +129,9 @@ export const transactionCategoryStyles = {
     chipBackgroundColor: "bg-inherit",
   },
   Travel: {
-    borderColor: "border-blue-700",
-    backgroundColor: "bg-blue-700",
-    textColor: "text-blue-800",
+    borderColor: "border-teal-500",
+    backgroundColor: "bg-blue-500",
+    textColor: "text-teal-700",
     chipBackgroundColor: "bg-inherit",
   },
   default: {

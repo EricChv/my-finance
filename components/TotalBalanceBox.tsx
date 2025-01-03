@@ -1,32 +1,51 @@
-import { formatAmount } from '@/lib/utils'
-import React from 'react'
-import DoughnutChart from './DoughnutChart'
+import { formatAmount } from '@/lib/utils';
+import React from 'react';
+import DoughnutChart from './DoughnutChart';
 
-const TotalBalanceBox = ({ accounts = [], totalBanks, totalCurrentBalance
+type TotalBalanceBoxProps = {
+  accounts: { name: string; currentBalance: number }[];
+  totalBanks: number;
+  totalCurrentBalance: number;
+};
+
+const TotalBalanceBox = ({
+  accounts = [],
+  totalBanks,
+  totalCurrentBalance,
 }: TotalBalanceBoxProps) => {
   return (
-    <section className="total-balance">
-        <div className="total-balance-chart">
-            <DoughnutChart accounts={accounts} />
+    <section className="total-balance p-6 bg-white shadow-lg rounded-xl flex flex-col lg:flex-row gap-6">
+      {/* Chart Section */}
+      <div className="total-balance-chart flex-1 min-w-[380px] rounded-md">
+        <DoughnutChart accounts={accounts} />
+      </div>
+
+      {/* Details Section */}
+      <div className="flex flex-col flex-1 min-w-[380px] items-start justify-between">
+        {/* Balance Overview Header */}
+        <div className="flex flex-col items-start mb-4">
+          <h2 className="text-xl font-semibold text-gray-800">Balance Overview</h2>
         </div>
 
-        <div className="flex flex-col gap-6">
-            <h2 className="header-2">
-                Bank Accounts: {totalBanks} 
-            </h2>
-            <div className="flex flex-col gap-1 items-center justify-center">
-                <p className="total-balance-label">
-                Current Funds
-                </p>
+        {/* Total Info Section */}
+        <div className="bg-white p-4 rounded-lg shadow-sm w-full flex flex-col gap-6">
+          {/* Total Accounts */}
+          <div className="flex justify-between items-center text-gray-700">
+            <span className="text-sm uppercase tracking-wide">Total Accounts</span>
+            <span className="text-lg font-bold text-gray-900">{totalBanks}</span>
+          </div>
 
-                <p className="total-balance-amount flex-center gap-2">
-            
-                    {formatAmount(totalCurrentBalance)}
-                </p>
-            </div>
+          {/* Total Funds */}
+          <div className="flex justify-between items-center text-gray-700">
+            <span className="text-sm uppercase tracking-wide">Total Funds</span>
+            <span className="text-xl font-bold text-gray-900">
+              {formatAmount(totalCurrentBalance)}
+            </span>
+          </div>
         </div>
+      </div>
     </section>
-  )
-}
+  );
+};
 
-export default TotalBalanceBox
+export default TotalBalanceBox;
